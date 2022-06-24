@@ -6,6 +6,12 @@
 # curl https://gist.githubusercontent.com/simba-fs/e06a1763c1967ce3f4b5ef643db5e0b3/raw/2f28c62d01f419a390bfc0e66a974985bacdefa5/.tmux.conf > ~/.tmux.conf
 # git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
+if [ -e /usr/share/terminfo/x/xterm+256color ]; then
+    export TERM='xterm-256color'
+else
+    export TERM='xterm-color'
+fi
+
 # ====== History ======
 HISTFILE=~/.history
 HISTSIZE=500000
