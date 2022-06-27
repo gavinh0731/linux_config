@@ -9,9 +9,9 @@ call plug#begin('~/.vim/plugged')
 " 在行號左側會顯示這行的 git 狀態，新增、刪除、修改，詳細請看 GitHub README
 Plug 'airblade/vim-gitgutter'
 
-" 按下 <F5> 可以開啟檔案樹，按 h 有說明，再一下關掉說明
+" 按下 <F7> 可以開啟檔案樹，按 h 有說明，再一下關掉說明
 Plug 'scrooloose/nerdtree'
-nmap <F5> :NERDTreeToggle<CR>
+nmap <F7> :NERDTreeToggle<CR>
 " Exit Vim if NERDTree is the only window left.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
             \ quit | endif
@@ -44,9 +44,9 @@ let g:NERDTrimTrailingWhitespace = 1
 " Enable NERDCommenterToggle to check all selected lines is commented or not
 let g:NERDToggleCheckAllLines = 1
 
-" 按 <F6> 可以回朔到開啟檔案以來的任何歷史，還會標出修改的地方，很酷
+" 按 <F9> 可以回朔到開啟檔案以來的任何歷史，還會標出修改的地方，很酷
 Plug 'mbbill/undotree'
-nnoremap <F6> :UndotreeToggle<CR>
+nnoremap <F9> :UndotreeToggle<CR>
 
 " <F8> 看看你設定了哪些變數、函數，也可以快速跳轉
 Plug 'majutsushi/tagbar'

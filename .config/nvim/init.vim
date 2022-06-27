@@ -177,3 +177,8 @@ function SwitchFullSimpleMode()
     endif
 endfunction
 
+" === 快捷鍵重新定義 ===
+noremap <F3> *
+noremap <F4> gd
+noremap <F5> <C-O>
+noremap <F6> <C-I>
