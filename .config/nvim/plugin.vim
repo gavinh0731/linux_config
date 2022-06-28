@@ -1,14 +1,33 @@
 call plug#begin('~/.vim/plugged')
 " ------------------------------------------------------
-" 彩色的 status bar
-" Plug 'itchyny/lightline.vim'
-"  有這個設定 lightline 在單個 vim 視窗中才會正常，沒錯！vim
-"  也可以分割視窗，後天會講
-" set laststatus=2
+" 底部狀態增強/美化外掛
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" @airline
+set t_co=256      "在windows中用xshell連線開啟vim可以顯示色彩
+let g:airline#extensions#tabline#enabled = 1   " 是否開啟tabline
+"這個是安裝字型後 必須設定此項" 
+let g:airline_powerline_fonts = 1   " 使用powerline外觀
+set laststatus=2  "永遠顯示狀態列
+" let g:airline_theme='dark' "選擇主題
+let g:airline_theme='bubblegum'               "選擇主題
+let g:airline_minimalist_showmod = 1          " 當緩衝區修改時高亮
+let g:airline#extensions#tabline#enabled=1    "smarter tab line: 顯示視窗tab和buffer
+"let g:airline#extensions#tabline#left_sep = ' '  "separater
+"let g:airline#extensions#tabline#left_alt_sep = '|'  "separater
+"let g:airline#extensions#tabline#formatter = 'default'  "formater
+"let g:airline_left_sep = '▶'
+"let g:airline_left_alt_sep = '❯'
+"let g:airline_right_sep = '◀'
+"let g:airline_right_alt_sep = '❮'
 
+" ------------------------------------------------------
+" git 相關
 " 在行號左側會顯示這行的 git 狀態，新增、刪除、修改，詳細請看 GitHub README
 Plug 'airblade/vim-gitgutter'
 
+" ------------------------------------------------------
+" 目錄樹
 " 按下 <F7> 可以開啟檔案樹，按 h 有說明，再一下關掉說明
 Plug 'scrooloose/nerdtree'
 nmap <F7> :NERDTreeToggle<CR>
@@ -16,13 +35,26 @@ nmap <F7> :NERDTreeToggle<CR>
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
             \ quit | endif
 
+" ------------------------------------------------------
+" 糢糊查詢
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+let g:Lf_ShortcutF = '<F8>'
+" <leader>+f, <leader>+b
+
+" === === 【編輯相關】 === === === === === === === === === ===
+" ------------------------------------------------------
 " 自動括號
 Plug 'jiangmiao/auto-pairs'
 " 這是自訂括號的寫法
 au FileType ejs let b:AutoPairs = AutoPairsDefine({'<%': '%>', '<!--': '-->'})
 au FileType html let b:AutoPairs = AutoPairsDefine({'<!--': '-->'})
 
-" 之前講過了，這邊附上一些設定
+" ------------------------------------------------------
+" 註釋
+" 說明：
+" <leader>cc 註釋當前行和選中行
+" <leader>ci 執行反轉註釋操作，選中區域註釋部分取消註釋，非註釋部分添加註釋
+" <leader>cu 取消註釋
 Plug 'preservim/nerdcommenter'
 filetype plugin on
 " Add spaces after comment delimiters by default
@@ -49,8 +81,8 @@ Plug 'mbbill/undotree'
 nnoremap <F9> :UndotreeToggle<CR>
 
 " <F8> 看看你設定了哪些變數、函數，也可以快速跳轉
-Plug 'majutsushi/tagbar'
-nmap <F8> :TagbarToggle<CR>
+"Plug 'majutsushi/tagbar'
+"nmap <F8> :TagbarToggle<CR>
 
 " 用 <反斜線 f> 可以整理程式碼（要裝 python3 和 pynvim，詳細請看 GitHub ）
 " $ python3 -m pip install pynvim

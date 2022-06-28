@@ -15,6 +15,8 @@ set nocompatible
 "      https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 "#######################################################
+"vim默認的leader是\,如果想改其他的鍵可以在此文件中追加如下：
+let mapleader=" "
 syntax enable
 set number
 set noruler
