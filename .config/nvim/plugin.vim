@@ -1,4 +1,5 @@
 call plug#begin('~/.vim/plugged')
+" === === 【外觀相關】 === === === === === === === === === ===
 " ------------------------------------------------------
 " 底部狀態增強/美化外掛
 Plug 'vim-airline/vim-airline'
@@ -22,6 +23,11 @@ let g:airline#extensions#tabline#enabled=1    "smarter tab line: 顯示視窗tab
 "let g:airline_right_alt_sep = '❮'
 
 " ------------------------------------------------------
+" 書籤外掛
+Plug 'MattesGroeger/vim-bookmarks'
+
+" === === 【GIT相關】 === === === === === === === === === ===
+" ------------------------------------------------------
 " git 相關
 " 在行號左側會顯示這行的 git 狀態，新增、刪除、修改，詳細請看 GitHub README
 Plug 'airblade/vim-gitgutter'
@@ -38,8 +44,48 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 " ------------------------------------------------------
 " 糢糊查詢
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
-let g:Lf_ShortcutF = '<F8>'
-" <leader>+f, <leader>+b
+" <leader>+f    " 檔案列表搜尋預設
+" <leader>+b    " Buffer列表搜尋預設
+let g:Lf_ShortcutF = '<F8>'  " 檔案列表搜尋 
+" let g:Lf_ShortcutB = '<c-l>'
+noremap <leader>l :LeaderfSelf<cr>
+noremap <leader>lm :LeaderfMru<cr>
+noremap <F12> :LeaderfFunction<cr>
+noremap <leader>lf :LeaderfFunction<cr>
+noremap <leader>lb :LeaderfBufTagAll<cr>
+noremap <leader>lt :LeaderfBufTag<cr>
+noremap <leader>ll :LeaderfLine<cr>
+noremap <leader>lw :LeaderfWindow<cr>
+
+" ------------------------------------------------------
+" 糢糊查詢 也是提供強大的搜索功能，可以和 Leaderf 互補
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" ------------------------------------------------------
+" 自動生成 tags 數據庫
+Plug 'ludovicchabant/vim-gutentags'
+let g:gutentags_add_default_project_roots=0
+" gutentags搜索工程目錄的標志，碰到這些文件/目錄名就停止向上一級目錄遞歸 "
+"let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
+let g:gutentags_project_root = ['.root']
+
+" 所生成的數據文件的名稱 "
+let g:gutentags_ctags_tagfile = '.tags'
+
+" 將自動生成的 tags 文件全部放入 ~/.cache/tags 目錄中，避免污染工程目錄 "
+let s:vim_tags = expand('~/.cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
+" 檢測 ~/.cache/tags 不存在就新建 "
+if !isdirectory(s:vim_tags)
+   silent! call mkdir(s:vim_tags, 'p')
+endif
+
+" 配置 ctags 的參數 "
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+
 
 " === === 【編輯相關】 === === === === === === === === === ===
 " ------------------------------------------------------
@@ -48,6 +94,10 @@ Plug 'jiangmiao/auto-pairs'
 " 這是自訂括號的寫法
 au FileType ejs let b:AutoPairs = AutoPairsDefine({'<%': '%>', '<!--': '-->'})
 au FileType html let b:AutoPairs = AutoPairsDefine({'<!--': '-->'})
+
+" 彩色括號
+Plug 'luochen1990/rainbow'
+let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
 
 " ------------------------------------------------------
 " 註釋
@@ -80,16 +130,27 @@ let g:NERDToggleCheckAllLines = 1
 Plug 'mbbill/undotree'
 nnoremap <F9> :UndotreeToggle<CR>
 
-" <F8> 看看你設定了哪些變數、函數，也可以快速跳轉
-"Plug 'majutsushi/tagbar'
-"nmap <F8> :TagbarToggle<CR>
+
+
+" === === 【Coc.nvim相關】 === === === === === === === === === ===
+" ------------------------------------------------------
+" 自動格式化
+map <leader>i :call Format()<CR>
+func! Format()
+    exec "w"
+    if &filetype == 'python'
+        exec "!python3 -m black %"
+    endif
+endfunc
+set autoread       "當vim打開的文件變化時,自動載入,因為black會修改python文件
+
 
 " 用 <反斜線 f> 可以整理程式碼（要裝 python3 和 pynvim，詳細請看 GitHub ）
 " $ python3 -m pip install pynvim
-Plug 'Chiel92/vim-autoformat'
+" Plug 'Chiel92/vim-autoformat'
 " 這裡指定成你的 python3 路徑
-let g:python3_host_prog="/usr/bin/python3"
-nmap <leader>f :Autoformat<CR>
+" let g:python3_host_prog="/usr/bin/python3"
+" nmap <leader>f :Autoformat<CR>
 
 " 在你開啟 markdown 文件時會開啟網頁預覽你的
 " markdown，有雙螢幕或是把畫面讓一半給瀏覽器比較好用（需要裝 nodejs）

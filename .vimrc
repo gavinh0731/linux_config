@@ -4,7 +4,7 @@
 " ctrl+j To utf-8 file
 " ctrl+t Convert tab to spaces
 " ctrl+l Toggle line breaking
-" ctrl+f Switch to full/simple
+" <F10> Switch to full/simple
  
 "#######################################################
 set nocompatible
@@ -16,13 +16,16 @@ set nocompatible
 
 "#######################################################
 "vim默認的leader是\,如果想改其他的鍵可以在此文件中追加如下：
-let mapleader=" "
-syntax enable
+let mapleader=" "  "設置空格作為<leader>鍵
+
+" 語法高亮相關
+syntax enable   "語法高亮,可有可無
+syntax on       "語法檢驗,顏色顯示
+
 set number
 set noruler
-set ignorecase
+set ignorecase  "搜索忽略大小寫
 set smartcase
-set incsearch
 " set cindent
 set expandtab
 set tabstop=4
@@ -35,7 +38,8 @@ set history=500
 set showcmd
 set showmode
 set nowrap
-set autowrite
+set autoread  "文件在Vim之外修改過，自動重新讀入"
+set autowrite "設置自動保存內容"
 "set mouse=a
 
 "#######################################################
@@ -44,7 +48,8 @@ set t_Co=256
 colo torte
 set cursorline
 set cursorcolumn
-set hlsearch
+set hlsearch    "高亮度反白
+set incsearch   "搜索逐字符高亮
 " hi CursorLine cterm=none ctermbg=DarkMagenta ctermfg=White
 " hi CursorColumn cterm=none ctermbg=DarkMagenta ctermfg=White
 hi Search cterm=reverse ctermbg=none ctermfg=none
@@ -161,8 +166,8 @@ so ~/.config/nvim/plugin.vim
 
 
 " Switch to full/simple
-map <C-f> :call SwitchFullSimpleMode()<CR>
-map! <C-f> <Esc>:call SwitchFullSimpleMode()<CR>
+map <F10> :call SwitchFullSimpleMode()<CR>
+map! <F10> <Esc>:call SwitchFullSimpleMode()<CR>
 function SwitchFullSimpleMode()
     if (&mouse == "a")
         let &mouse = ""
