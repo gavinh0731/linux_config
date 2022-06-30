@@ -61,6 +61,59 @@ noremap <leader>lw :LeaderfWindow<cr>
 " 糢糊查詢 也是提供強大的搜索功能，可以和 Leaderf 互補
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+nnoremap <leader>fl :Lines 
+nnoremap <leader>fb :BLines 
+nnoremap <leader>ff :Files 
+nnoremap <leader>fg :GFiles 
+nnoremap <leader>f? :GFiles? 
+nnoremap <leader>ft :Tags<cr>
+nnoremap <leader>fa :Ag 
+nnoremap <leader>fc :Commits
+
+" ------------------------------------------------------
+" 全文檢索(配合ripgrep指令)
+Plug 'mileszs/ack.vim'
+" ack.vim --- {{{
+
+" Use ripgrep for searching ⚡️
+" Options include:
+" --vimgrep -> Needed to parse the rg response properly for ack.vim
+" --type-not sql -> Avoid huge sql file dumps as it slows down the search
+" --smart-case -> Search case insensitive if all lowercase pattern, Search case sensitively otherwise
+let g:ackprg = 'rg --vimgrep --type-not sql --smart-case'
+
+" Auto close the Quickfix list after pressing '<enter>' on a list item
+let g:ack_autoclose = 1
+
+" Any empty ack search will search for the work the cursor is on
+let g:ack_use_cword_for_empty_search = 1
+
+" Don't jump to first match
+cnoreabbrev Ack Ack!
+
+" Maps <leader>/ so we're ready to type the search keyword
+nnoremap <leader>/ :Ack!<Space>
+nnoremap <F1> :Ack!<Space>
+" }}}
+
+" Navigate quickfix list with ease
+nnoremap <silent> [q :cprevious<CR>
+nnoremap <silent> ]q :cnext<CR>
+
+" 切換 Quickfix 視窗
+function! ToggleQF()
+    if !exists("g:fx_toggle")
+        let g:fx_toggle = 0
+    endif
+    if g:fx_toggle == 0
+        let g:fx_toggle = 1
+        copen
+    else
+        let g:fx_toggle = 0
+        cclose
+    endif
+endfunc
+map <silent> <F2> :call ToggleQF()<cr>
 
 " ------------------------------------------------------
 " 自動生成 tags 數據庫

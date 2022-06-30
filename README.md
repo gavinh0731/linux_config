@@ -10,6 +10,10 @@ Config for Linux
 + `ctrl+t` Convert tab to spaces
 + `ctrl+l` Toggle line breaking
 
++ `<F1>` 精確搜尋
++ `<leader>/` 在某個字按 `Enter`：精確搜尋
++ `<leader>/` 後面接小寫的文字，按 `Enter`：不區分大小寫
++ `<F2>` 切換Quickfix列表
 + `<F3>` 向下搜尋游標所指定的文字
 + `<F4>` 轉跳到游標所指定的函數定義
 + `<F5>` 轉跳到上次編輯的位置(返回)
@@ -169,6 +173,26 @@ Change this line to UPPERCASE, THEN TO lowercase.
 	這裡直接用了 `LeaderfFunction` 這個命令，也可以定義成快捷鍵。
 
 - `<leader>+B`  查找Buffer列表。
+
+## 糢糊檢索 fzf
++ `<leader>fl` :Lines 快速開啟全文檢索搜尋視窗
++ `<leader>fb` :BLines 
++ `<leader>ff` :Files 快速開啟檔案搜尋視窗
++ `<leader>fg` :GFiles 
++ `<leader>f?` :GFiles? 
++ `<leader>ft` :Tags`<cr>`
++ `<leader>fa` :Ag 快速開啟全域搜尋的視窗
++ `<leader>fc` :Commits
+
+## 全文檢索
++ `<F1>` 精確搜尋
++ `<leader>/` 在某個字按 `Enter`：精確搜尋
++ `<leader>/` 後面接小寫的文字，按 `Enter`：不區分大小寫
++ `<F2>` 切換Quickfix列表
++ `]q`或`[q` 。 VIM將光標移至下一個/上一個結果，並在需要時在新緩沖區中打開文件。
++ 完成後要關閉Quickfix列表，您可以轉到底部的Quickfix窗口並關閉它，也可以運行
+   `:cclose`    
+- 要備份打開的快速修復列表，請運行`:copen`
 
 ## 書籤外掛
 | Action                                        | Shortcut     | Command                       |
