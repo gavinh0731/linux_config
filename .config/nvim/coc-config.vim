@@ -78,6 +78,7 @@ nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " 程式碼轉跳（這個我覺得有點難記，而且這四個實驗出來效果非常像，我的建議是試過後選你覺得順眼的，不要全上
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> <F4> <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)

@@ -45,7 +45,7 @@ set autowrite "設置自動保存內容"
 "#######################################################
 " Color
 set t_Co=256
-colo torte
+colorscheme torte
 set cursorline
 set cursorcolumn
 set hlsearch    "高亮度反白
@@ -186,6 +186,6 @@ endfunction
 
 " === 快捷鍵重新定義 ===
 noremap <F3> *
-noremap <F4> gd
+" noremap <F4> gd
 noremap <F5> <C-O>
 noremap <F6> <C-I>
