@@ -25,7 +25,7 @@ setopt SHARE_HISTORY
 source ~/.zplug/init.zsh
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # zplug plugins
 zplug "romkatv/powerlevel10k", as:theme, depth:1

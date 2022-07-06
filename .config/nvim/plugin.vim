@@ -82,6 +82,9 @@ Plug 'mileszs/ack.vim'
 " --smart-case -> Search case insensitive if all lowercase pattern, Search case sensitively otherwise
 let g:ackprg = 'rg --vimgrep --type-not sql --smart-case'
 
+" 高亮搜索關鍵詞
+let g:ackhighlight = 1
+
 " Auto close the Quickfix list after pressing '<enter>' on a list item
 let g:ack_autoclose = 1
 
