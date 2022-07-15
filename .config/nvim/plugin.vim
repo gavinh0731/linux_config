@@ -191,11 +191,13 @@ nnoremap <F9> :UndotreeToggle<CR>
 " === === 【Coc.nvim相關】 === === === === === === === === === ===
 " ------------------------------------------------------
 " 自動格式化
+" exec "!python3 -m black %"
+" exec "!python3 -m yapf -vv %"
 map <leader>i :call Format()<CR>
 func! Format()
     exec "w"
     if &filetype == 'python'
-        exec "!python3 -m black %"
+        exec "!python3 -m yapf -vv %"
     endif
 endfunc
 set autoread       "當vim打開的文件變化時,自動載入,因為black會修改python文件

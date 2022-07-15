@@ -164,7 +164,7 @@ Change this line to UPPERCASE, THEN TO lowercase.
 | gi           | 程式碼轉跳(coc-implementation)           |
 
 #### 代碼格式化
-- `<leader>+I` 使用black自動格式化python程式碼
+- `<leader>+I` 使用yapf自動格式化python程式碼
 
 ## leaderF
 - `<F8>`  查找文件： 
