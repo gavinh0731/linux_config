@@ -1,6 +1,15 @@
 # linux_config
 Config for Linux
 
+# 安裝說明
+```
+nvim ~/.vimrc
+nvim ~/.config/nvim/init.vim
+
+:so %
+:PlugInstall
+```
+
 # 快捷鍵說明
 
 ## 自定快捷鍵
