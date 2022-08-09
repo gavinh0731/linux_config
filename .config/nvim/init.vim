@@ -40,7 +40,7 @@ set showmode
 set nowrap
 set autoread  "文件在Vim之外修改過，自動重新讀入"
 set autowrite "設置自動保存內容"
-"set mouse=a
+set mouse=""  "禁用鼠標"
 
 "#######################################################
 " Color
