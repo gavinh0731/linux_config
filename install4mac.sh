@@ -1,3 +1,3 @@
 cp .vimrc ~/;
-cp .zshrc ~/;
+cp .zshrc.mac ~/;
 cp -R .config ~/;
