@@ -97,9 +97,12 @@ bindkey "\e[F" end-of-line
 bindkey '^i' expand-or-complete-prefix
 
 # some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+# 看列表
+alias ll='ls -hl'
+# 看隱藏檔列表
+alias la='ls -Al'
+# 看隱藏檔
+alias l='ls -A'
 alias cd2='cd ../..'
 alias cd3='cd ../../..'
 alias cd4='cd ../../../..'
@@ -112,7 +115,7 @@ alias cp='cp -r'
 # -h 可以把檔案大小加上適當的單位，比較好讀
 # -l 印出除了檔名其他的資訊，ex：權限、大小
 # -F、--color 純粹是好看
-alias ls='ls -hlF --color=auto'
+alias ls='ls -CF --color=auto'
 
 # 把當前目錄下的檔案/目錄以樹狀結構印出來，會把不重要的（.git, node_modules）忽略，後面可以接路徑
 alias tree="tree -alI 'node_modules|.git'"
