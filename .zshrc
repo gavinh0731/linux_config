@@ -27,6 +27,12 @@ source ~/.zplug/init.zsh
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# miniconda
+export PATH="~/miniconda3/bin:$PATH"
+
+# poetry
+export PATH="~/.local/bin:$PATH"
+
 # zplug plugins
 zplug "romkatv/powerlevel10k", as:theme, depth:1
 zplug 'zsh-users/zsh-autosuggestions'
@@ -129,3 +135,37 @@ alias grepFind='grep --exclude-dir=node_modules -nr . -e'
 # 建立巢狀目錄時會一併建立上層目錄，下面解釋
 alias mkdir='mkdir -p'
     
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/hisharp/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/hisharp/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/hisharp/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/hisharp/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+
+function conda_set() {
+    # 呼叫原始的conda命令
+    conda activate "$@"
+
+    # 覆蓋式保存最新一次啟動的conda環境名稱到.condarc檔案中
+    rm -f ~/.last_conda_env
+    echo "$(conda info --envs | grep '*' | awk '{print $1}')" >> ~/.last_conda_env
+}
+
+if [ -f ~/.last_conda_env ]; then
+    # 讀取.condarc檔案中保存的最後一次啟動的conda環境名稱
+    last_conda_env=$(cat ~/.last_conda_env)
+
+    # 啟動最後一次啟動的conda環境
+    conda activate $last_conda_env
+fi
+
+# <<< conda initialize <<<
+
