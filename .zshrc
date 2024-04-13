@@ -28,10 +28,10 @@ source ~/.zplug/init.zsh
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # miniconda
-export PATH="~/miniconda3/bin:$PATH"
+export PATH="$HOME/miniconda3/bin:$PATH"
 
 # poetry
-export PATH="~/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # zplug plugins
 zplug "romkatv/powerlevel10k", as:theme, depth:1
@@ -134,14 +134,14 @@ alias mkdir='mkdir -p'
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/hisharp/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('$HOME/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/hisharp/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/hisharp/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "$HOME/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/hisharp/miniconda3/bin:$PATH"
+        export PATH="$HOME/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
